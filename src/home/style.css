@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&family=Ubuntu:wght@400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #fafafa;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 30px;
+  padding: 30px;
+  align-items: center;
+  font-family: "Ubuntu", sans-serif;
+  border-bottom: 0.2px solid gray;
+  background: none;
+}
+
+header .list {
+  list-style-type: none;
+  display: flex;
+}
+
+header .list li {
+  padding: 30px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  border-radius: 5px;
+  /* box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22); */
+  padding: 30px;
+  margin: 20px;
+  width: 350px;
+  transition: all 0.3s ease-out;
+  text-align: center;
+  background-color: antiquewhite;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+}
+
+.card p {
+  color: #4a4b4e;
+  font-size: 16px;
+}
+
+.image {
+  float: right;
+  max-width: 64px;
+  max-height: 64px;
+}
+
+.blue {
+  border-left: 3px solid #4895ff;
+}
+
+.green {
+  border-left: 3px solid #3bb54a;
+}
+
+.red {
+  border-left: 3px solid #b3404a;
+}
+
+h3 {
+    padding-left: 30px;
+    padding-top: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* DETALHES PAGE */
+
+.img-detalhes {
+    padding: 30px;
+    border: 1px solid;
+    margin: 20px;
+}
+
+.list-detalhes {
+    padding-top: 60px;
+}
+
+main {
+    display: flex;
+    padding: 50px;
+}
+
+main ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.list-name {
+    font: bold 50pt Ubuntu;
+}
+
+.list-star {
+    padding: 20px 0;
+    color: rgb(192, 192, 3);
+}
+
+.list-sinopse {
+    padding-top: 40px;
+    padding-bottom: 30px;
+    width: 50%;
+}
+
+.list-elenco {
+    width: 50%;
+    padding-top: 40px;
+    padding-bottom: 30px;
+}
+
+.list-data {
+    padding-top: 40px;
+}
