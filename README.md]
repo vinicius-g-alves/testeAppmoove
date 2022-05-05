@@ -1,1 +1,7 @@
 # testeAppmoove
+
+é necessario ter o node e o pacote npm instalados na máquina
+ao baixar e entrar na pasta, rodar o "npm install" para atualizar as deéndências
+executar "npm start" no terminal.
+
+endereço: http://localhost:3000/
