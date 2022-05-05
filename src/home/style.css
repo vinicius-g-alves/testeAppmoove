@@ -91,7 +91,7 @@ header .search-space button:hover {
   transform: translateY(-5px);
   cursor: pointer;
   background: rgb(226, 96, 96);
-  border: 5px solid ;
+  border: 5px solid;
   color: #111;
 }
 
@@ -142,7 +142,7 @@ header .search-space button:hover {
   margin-top: 30px;
   background-color: black;
   color: white;
-  font: bold 15pt 'Poppins';
+  font: bold 15pt "Poppins";
   text-align: center;
 }
 
@@ -207,7 +207,7 @@ header .search-space button:hover {
   padding: 20px 50px;
   margin-left: 300px;
   border-radius: 10px;
-  font: bold 20px 'Ubuntu';
+  font: bold 20px "Ubuntu";
   background-color: white;
   transition: all 0.3s;
 }
@@ -221,10 +221,9 @@ header .search-space button:hover {
 /* responsive */
 
 @media (max-width: 600px) {
-
   header {
     width: 100%;
-    background-color:  rgb(36, 36, 112);
+    background-color: rgb(36, 36, 112);
     padding: 20px;
     border-radius: 0 0 30px 30px;
     text-align: center;
@@ -232,13 +231,13 @@ header .search-space button:hover {
 
   header a {
     display: none;
-    font: bold 5pt 'Ubuntu';
+    font: bold 5pt "Ubuntu";
     padding: 0;
   }
 
   header .search-space input {
     width: 50%;
-    font: bold 10pt 'Ubuntu';
+    font: bold 10pt "Ubuntu";
   }
 
   header .search-space button:hover {
@@ -262,54 +261,54 @@ header .search-space button:hover {
     text-align: center;
     justify-content: center;
   }
-  
+
   .h3-cartaz,
   .h3-top {
     padding-top: 30px;
     padding-left: 0%;
   }
-  
+
   .row {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  
+
   .card {
-  border-radius: 5px;
-  padding: 100px 30px;
-  margin: 20px;
-  width: 300px;
-  height: 300px;
-  transition: all 0.3s ease-out;
-  text-align: center;
-  justify-content: center;
-  background-color: rgb(36, 36, 112);
-  color: white;
+    border-radius: 5px;
+    padding: 100px 30px;
+    margin: 20px;
+    width: 300px;
+    height: 300px;
+    transition: all 0.3s ease-out;
+    text-align: center;
+    justify-content: center;
+    background-color: rgb(36, 36, 112);
+    color: white;
   }
-  
+
   .card:hover {
     transform: translateY(-5px);
     cursor: pointer;
   }
-  
+
   .card h2 {
     color: white;
     font-size: 15px;
     padding: 10px;
   }
-  
+
   .card h4 {
     color: antiquewhite;
     font-size: 10px;
     padding-top: 10px;
   }
-  
+
   .top-rated {
     padding-top: 70px;
   }
-  
+
   .pesquisa {
     text-align: center;
     font: bold 20pt "Ubuntu";
@@ -332,7 +331,7 @@ header .search-space button:hover {
     color: white;
     box-sizing: border-box;
   }
-  
+
   .details {
     display: flex;
     flex-direction: column;
@@ -340,7 +339,7 @@ header .search-space button:hover {
     align-items: center;
     padding: 40px;
   }
-  
+
   .img-details {
     width: 150px;
     height: 250px;
@@ -349,17 +348,17 @@ header .search-space button:hover {
     padding-top: 10%;
     font: bold 25pt "Poppins";
   }
-  
+
   .close-modal {
     padding: 5px 20px;
     margin-left: 100px;
     border-radius: 10px;
-    font: bold 20px 'Ubuntu';
+    font: bold 20px "Ubuntu";
     background-color: white;
     text-align: center;
     transition: all 0.3s;
   }
-  
+
   .close-modal:hover {
     border: 3px solid white;
     color: white;
@@ -374,11 +373,11 @@ header .search-space button:hover {
     display: row;
     padding-top: 20px;
   }
-  
+
   .list-name {
     font: bold 15pt "Ubuntu";
   }
-  
+
   .list-sinopse {
     padding: 10px 0;
     font: bold 10pt "Ubuntu";
@@ -387,14 +386,13 @@ header .search-space button:hover {
   .description {
     font: normal 10pt "Ubuntu";
   }
-  
+
   .list-data {
     font: bold 10pt "Ubuntu";
   }
-  
+
   .list-elenco {
     padding: 20px 0;
     font: bold 15pt "Ubuntu";
   }
-  
 }
