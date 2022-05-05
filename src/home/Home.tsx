@@ -1,4 +1,3 @@
-import { Autocomplete, TextField } from "@mui/material";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import Details from "../details/Details";
@@ -55,9 +54,9 @@ function Home() {
       });
   }
 
-  const pegaTexto = (event:any) => {
+  const pegaTexto = (event: any) => {
     setFilmePesquisado(event.target.value);
-  }
+  };
 
   // axios
   //   .get("https://api.themoviedb.org/3/movie/upcoming?api_key=8238e0429d265d4d18abf1b53a68e7cb&language=pt-BR&page=1", {
@@ -77,8 +76,6 @@ function Home() {
     getTopRated();
   }, []);
 
-  
-
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -89,18 +86,18 @@ function Home() {
           <h1>Vinicius Alves</h1>
         </a>
 
-        <input type="text" id="search" value={filmePesquisado} onChange={pegaTexto}/>
-        <button onClick={() => pesquisa()}>Pesquisar</button>
-        {/* <Autocomplete options={resultadoPesquisa} renderInput={(params) => <TextField {...params} />} /> */}
-        
-        <ul>
-          {resultadoPesquisa.map((filme) => {
-            return (
-              <li>{filme.title}</li>
-            )
-          })
-        }
-        </ul>
+        <div className="search">
+          <div className="search-space">
+            <input
+              type="text"
+              id="search"
+              value={filmePesquisado}
+              onChange={pegaTexto}
+              placeholder="Pesquisar..."
+            />
+            <button onClick={() => pesquisa()}>Pesquisar</button>
+          </div>
+        </div>
 
         <nav>
           <ul className="list">
@@ -112,14 +109,20 @@ function Home() {
       </header>
 
       <main>
+        <ul className="pesquisa">
+          {resultadoPesquisa.map((filme) => {
+            return <li>{filme.title}</li>;
+          })}
+        </ul>
+
         <div className="sections">
           <section className="cartaz">
-            <h3>Em Cartaz Agora</h3>
+            <h3 className="h3-cartaz">Em Cartaz Agora</h3>
             <div className="row">
               {listaFilmesCartaz.slice(0, 3).map((filme) => {
                 return (
                   <div className="card">
-                    <a href="#">
+                    <a href="#" onClick={handleOpen}>
                       <img src="" width="300px" />
                       <h2 id="movie">{filme.title}</h2>
                       <h4 id="lancamento">{filme.release_date}</h4>
@@ -130,10 +133,10 @@ function Home() {
             </div>
           </section>
 
-          <section className="top_rated">
-            <h3>Melhores Classificados</h3>
+          <section className="top-rated">
+            <h3 className="h3-top">Melhores Classificados</h3>
             <div className="row">
-              {listaFilmesTopRated.slice(0, 6).map((filme) => {
+              {listaFilmesTopRated.slice(0, 5).map((filme) => {
                 return (
                   <div className="card">
                     <a href="#" onClick={handleOpen}>
@@ -148,7 +151,7 @@ function Home() {
           </section>
         </div>
       </main>
-      <Details open={open} handleClose={handleClose}/>
+      <Details open={open} handleClose={handleClose} />
     </div>
   );
 }
