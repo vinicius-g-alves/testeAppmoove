@@ -17,9 +17,19 @@ function Details(props: any) {
                 Data de Lançamento: <span>...</span>
               </li> */}
 
-              <li className="list-name">{props.passaFilme.title}</li>
-              <li className="list-sinopse">Sinopse: <span className="description">{props.passaFilme.overview}</span></li>
-              <li className="list-data">Data de Lançamento: <span>{props.passaFilme.release_date}</span></li>
+              <div className="movie-description">
+                <li className="list-name">{props.passaFilme.title}</li>
+                <li className="list-sinopse">
+                  Sinopse:{" "}
+                  <span className="description">
+                    {props.passaFilme.overview}
+                  </span>
+                </li>
+                <li className="list-data">
+                  Data de Lançamento:{" "}
+                  <span>{props.passaFilme.release_date}</span>
+                </li>
+              </div>
               {/* <li className="list-elenco">Elenco:</li>  *NÃO FOI COLOCADO POIS NÃO EXISTE NA API */}
             </ul>
           </div>

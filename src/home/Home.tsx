@@ -5,11 +5,19 @@ import { Filme } from "../types/types";
 import "./style.css";
 
 function Home() {
+  const filmeInicio: Filme = {
+    id: 0,
+    original_title: "",
+    overview: "",
+    poster_path: "",
+    release_date: "",
+    title: "",
+  };
   const [listaFilmesCartaz, setlistaFilmesCartaz] = useState<Filme[]>([]);
   const [listaFilmesTopRated, setlistaFilmesTopRated] = useState<Filme[]>([]);
   const [filmePesquisado, setFilmePesquisado] = useState<string>("");
   const [resultadoPesquisa, setResultadoPesquisa] = useState<Filme[]>([]);
-  const [passaFilme, setPassaFilme] = useState<Filme>();
+  const [passaFilme, setPassaFilme] = useState<Filme>(filmeInicio);
   const [open, setOpen] = useState<boolean>(false);
 
   function getFilmesCartaz() {
@@ -29,7 +37,7 @@ function Home() {
   function getTopRated() {
     axios
       .get(
-        "https://api.themoviedb.org/3/movie/top_rated?api_key=8238e0429d265d4d18abf1b53a68e7cb&language=en-US&page=1&"
+        "https://api.themoviedb.org/3/movie/top_rated?api_key=8238e0429d265d4d18abf1b53a68e7cb&language=pt-BR&page=1&"
       )
       .then((response: AxiosResponse<any>) => {
         setlistaFilmesTopRated(response.data.results);
@@ -63,16 +71,11 @@ function Home() {
     getTopRated();
   }, []);
 
-  // const handleOpen = (filme: Filme) => {
-  //   setOpen(true)
-  //   setPassaFilme(filme)
-  //   }
-
-  function handleOpen (filme: Filme) {
-    setOpen(true)
-    setPassaFilme(filme)
+  // Abre e fecha modal:
+  function handleOpen(filme: Filme) {
+    setOpen(true);
+    setPassaFilme(filme);
   }
-  
   const handleClose = () => setOpen(false);
 
   return (
@@ -96,7 +99,7 @@ function Home() {
         </div>
 
         <nav>
-          <ul className="list">
+          <ul className="menu">
             <li>
               <i className="fa-solid fa-bars"></i>menu
             </li>
@@ -111,6 +114,10 @@ function Home() {
               <li className="li-resull-pesquisa">
                 <a href="#" onClick={() => handleOpen(filme)}>
                   {filme.title}
+                  <div className="invisible-search-elements">
+                    {filme.overview}
+                    {filme.release_date}
+                  </div>
                 </a>
               </li>
             );
@@ -124,7 +131,7 @@ function Home() {
               {listaFilmesCartaz.slice(0, 3).map((filme) => {
                 return (
                   <div className="card">
-                    <a href="#" onClick={() => handleOpen(filme)} >
+                    <a href="#" onClick={() => handleOpen(filme)}>
                       <img src="" width="300px" />
                       <h2 id="movie">{filme.title}</h2>
                       <h4 id="lancamento"> date: {filme.release_date}</h4>
@@ -132,7 +139,7 @@ function Home() {
                     </a>
                   </div>
                 );
-                console.log("aqui",passaFilme)
+                console.log("aqui", passaFilme);
               })}
             </div>
           </section>
@@ -140,7 +147,7 @@ function Home() {
           <section className="top-rated">
             <h3 className="h3-top">Melhores Classificados</h3>
             <div className="row">
-              {listaFilmesTopRated.slice(0, 5).map((filme) => {
+              {listaFilmesTopRated.slice(0, 6).map((filme) => {
                 return (
                   <div className="card">
                     <a href="#" onClick={() => handleOpen(filme)}>
@@ -153,9 +160,18 @@ function Home() {
               })}
             </div>
           </section>
+
+          <section className="credits">
+            All credits for <a href="https://www.themoviedb.org/">TMDB API</a>
+          </section>
         </div>
       </main>
-      <Details open={open} handleClose={handleClose} passaFilme={passaFilme} handleOpen={handleOpen}/>
+      <Details
+        open={open}
+        handleClose={handleClose}
+        passaFilme={passaFilme}
+        handleOpen={handleOpen}
+      />
     </div>
   );
 }
