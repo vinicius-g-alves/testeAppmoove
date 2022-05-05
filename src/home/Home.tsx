@@ -9,7 +9,7 @@ function Home() {
   const [listaFilmesTopRated, setlistaFilmesTopRated] = useState<Filme[]>([]);
   const [filmePesquisado, setFilmePesquisado] = useState<string>("");
   const [resultadoPesquisa, setResultadoPesquisa] = useState<Filme[]>([]);
-
+  const [passaFilme, setPassaFilme] = useState<Filme>();
   const [open, setOpen] = useState<boolean>(false);
 
   function getFilmesCartaz() {
@@ -58,25 +58,21 @@ function Home() {
     setFilmePesquisado(event.target.value);
   };
 
-  // axios
-  //   .get("https://api.themoviedb.org/3/movie/upcoming?api_key=8238e0429d265d4d18abf1b53a68e7cb&language=pt-BR&page=1", {
-  //     responseType: "arraybuffer",
-  //   })
-  //   .then((response) => {
-  //     const foto = Buffer.from(response.data.results.poster_path, "base64")
-  //     // setListaImages(foto));
-  //     console.log(foto);
-  //   })
-  //   .catch((ex) => {
-  //     console.error(ex);
-  //   });
-
   useEffect(() => {
     getFilmesCartaz();
     getTopRated();
   }, []);
 
-  const handleOpen = () => setOpen(true);
+  // const handleOpen = (filme: Filme) => {
+  //   setOpen(true)
+  //   setPassaFilme(filme)
+  //   }
+
+  function handleOpen (filme: Filme) {
+    setOpen(true)
+    setPassaFilme(filme)
+  }
+  
   const handleClose = () => setOpen(false);
 
   return (
@@ -101,15 +97,23 @@ function Home() {
 
         <nav>
           <ul className="list">
-            <li><i className="fa-solid fa-bars"></i>menu</li>
+            <li>
+              <i className="fa-solid fa-bars"></i>menu
+            </li>
           </ul>
         </nav>
       </header>
 
       <main>
         <ul className="pesquisa">
-          {resultadoPesquisa.slice(0,3).map((filme) => {
-            return <li>{filme.title}</li>;
+          {resultadoPesquisa.slice(0, 3).map((filme) => {
+            return (
+              <li className="li-resull-pesquisa">
+                <a href="#" onClick={() => handleOpen(filme)}>
+                  {filme.title}
+                </a>
+              </li>
+            );
           })}
         </ul>
 
@@ -120,7 +124,7 @@ function Home() {
               {listaFilmesCartaz.slice(0, 3).map((filme) => {
                 return (
                   <div className="card">
-                    <a href="#" onClick={handleOpen}>
+                    <a href="#" onClick={() => handleOpen(filme)} >
                       <img src="" width="300px" />
                       <h2 id="movie">{filme.title}</h2>
                       <h4 id="lancamento"> date: {filme.release_date}</h4>
@@ -128,6 +132,7 @@ function Home() {
                     </a>
                   </div>
                 );
+                console.log("aqui",passaFilme)
               })}
             </div>
           </section>
@@ -138,7 +143,7 @@ function Home() {
               {listaFilmesTopRated.slice(0, 5).map((filme) => {
                 return (
                   <div className="card">
-                    <a href="#" onClick={handleOpen}>
+                    <a href="#" onClick={() => handleOpen(filme)}>
                       <img src="" width="300px" />
                       <h2 id="movie">{filme.title}</h2>
                       <h4 id="lancamento">{filme.release_date}</h4>
@@ -150,7 +155,7 @@ function Home() {
           </section>
         </div>
       </main>
-      <Details open={open} handleClose={handleClose} />
+      <Details open={open} handleClose={handleClose} passaFilme={passaFilme} handleOpen={handleOpen}/>
     </div>
   );
 }

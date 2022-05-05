@@ -116,6 +116,19 @@ header .search-space button:hover {
   border-radius: 2px 2px 10px 10px;
 }
 
+.li-resull-pesquisa {
+  /* border-bottom: 0.2px solid gray; */
+  padding: 20px 0;
+}
+
+.li-resull-pesquisa a {
+  color: black;
+}
+
+.li-resull-pesquisa a:hover {
+  color: red;
+}
+
 /* details */
 
 .modal {
@@ -169,13 +182,28 @@ header .search-space button:hover {
   font: bold 15pt "Ubuntu";
 }
 
+.close-modal {
+  padding: 20px 50px;
+  margin-left: 300px;
+  border-radius: 10px;
+  font: bold 20px 'Ubuntu';
+  background-color: white;
+  transition: all 0.3s;
+}
+
+.close-modal:hover {
+  border: 3px solid white;
+  color: white;
+  background: none;
+}
+
 /* responsive */
 
 @media (max-width: 600px) {
 
   header {
     width: 100%;
-    background-color: red;
+    background-color:  rgb(36, 36, 112);
     padding: 20px;
     border-radius: 0 0 30px 30px;
     text-align: center;
@@ -211,6 +239,7 @@ header .search-space button:hover {
   .sections {
     padding-top: 10px;
     text-align: center;
+    justify-content: center;
   }
   
   .h3-cartaz,
@@ -273,18 +302,19 @@ header .search-space button:hover {
 
   .modal {
     background: rgba(192, 192, 192, 0.35);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
     backdrop-filter: blur(13.5px);
     -webkit-backdrop-filter: blur(13.5px);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     color: white;
+    box-sizing: border-box;
   }
   
   .details {
     display: flex;
     flex-direction: column;
-    padding: 60px 50px;
+    text-align: left;
   }
   
   .img-details {
@@ -296,9 +326,23 @@ header .search-space button:hover {
     font: bold 25pt "Poppins";
   }
   
+  .close-modal {
+    padding: 5px 20px;
+    margin-left: 100px;
+    border-radius: 10px;
+    font: bold 20px 'Ubuntu';
+    background-color: white;
+    transition: all 0.3s;
+  }
+  
+  .close-modal:hover {
+    border: 3px solid white;
+    color: white;
+    background: none;
+  }
+
   .movie-data {
     list-style-type: none;
-    justify-content: start;
   }
   
   .list-name {
