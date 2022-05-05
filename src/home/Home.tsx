@@ -81,7 +81,7 @@ function Home() {
 
   return (
     <div>
-      <header>
+      <header className="mobile">
         <a href="index.html">
           <h1>Vinicius Alves</h1>
         </a>
@@ -101,16 +101,14 @@ function Home() {
 
         <nav>
           <ul className="list">
-            <li>
-              <i className="fa-solid fa-arrow-down-wide-short"></i> Filtros
-            </li>
+            <li><i className="fa-solid fa-bars"></i>menu</li>
           </ul>
         </nav>
       </header>
 
       <main>
         <ul className="pesquisa">
-          {resultadoPesquisa.map((filme) => {
+          {resultadoPesquisa.slice(0,3).map((filme) => {
             return <li>{filme.title}</li>;
           })}
         </ul>
@@ -125,7 +123,8 @@ function Home() {
                     <a href="#" onClick={handleOpen}>
                       <img src="" width="300px" />
                       <h2 id="movie">{filme.title}</h2>
-                      <h4 id="lancamento">{filme.release_date}</h4>
+                      <h4 id="lancamento"> date: {filme.release_date}</h4>
+                      <h4 id="id"> id: {filme.id}</h4>
                     </a>
                   </div>
                 );

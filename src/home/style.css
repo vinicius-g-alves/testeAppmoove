@@ -65,7 +65,8 @@ header .search-space button:hover {
 
 .row {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
+  padding-left: 40px;
   align-items: center;
 }
 
@@ -78,22 +79,26 @@ header .search-space button:hover {
   transition: all 0.3s ease-out;
   text-align: center;
   justify-content: center;
-  background-color: antiquewhite;
+  background-color: rgb(36, 36, 112);
+  color: white;
 }
 
 .card:hover {
   transform: translateY(-5px);
   cursor: pointer;
+  background: rgb(226, 96, 96);
+  border: 5px solid ;
+  color: #111;
 }
 
 .card h2 {
-  color: #111;
+  color: white;
   font-size: 25px;
   padding: 10px;
 }
 
 .card h4 {
-  color: #4a4b4e;
+  color: antiquewhite;
   font-size: 16px;
 }
 
@@ -114,5 +119,208 @@ header .search-space button:hover {
 /* details */
 
 .modal {
-  background-color: rgb(255, 255, 255);
+  background: rgba(192, 192, 192, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(13.5px);
+  -webkit-backdrop-filter: blur(13.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: white;
+}
+
+.details {
+  display: flex;
+  padding: 60px 50px;
+}
+
+.img-details {
+  width: 700px;
+  height: 800px;
+  border: 3px solid black;
+  text-align: center;
+  padding-top: 100px;
+  font: bold 25pt "Poppins";
+}
+
+.movie-data {
+  list-style-type: none;
+  padding-left: 50px;
+}
+
+.list-name {
+  font: bold 25pt "Ubuntu";
+}
+
+.list-sinopse {
+  padding: 20px 0;
+  font: bold 15pt "Ubuntu";
+  width: 50%;
+}
+.description {
+  font: normal 15pt "Ubuntu";
+}
+
+.list-data {
+  font: bold 15pt "Ubuntu";
+}
+
+.list-elenco {
+  padding: 20px 0;
+  font: bold 15pt "Ubuntu";
+}
+
+/* responsive */
+
+@media (max-width: 600px) {
+
+  header {
+    width: 100%;
+    background-color: red;
+    padding: 20px;
+    border-radius: 0 0 30px 30px;
+    text-align: center;
+  }
+
+  header a {
+    display: none;
+    font: bold 5pt 'Ubuntu';
+    padding: 0;
+  }
+
+  header .search-space input {
+    width: 50%;
+    font: bold 10pt 'Ubuntu';
+  }
+
+  header .search-space button:hover {
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid white;
+    margin-left: 5px;
+    background: none;
+    font: bold 11pt "Ubuntu";
+    color: white;
+  }
+
+  .list {
+    display: none;
+  }
+
+  /* main sytling mobile */
+
+  .sections {
+    padding-top: 10px;
+    text-align: center;
+  }
+  
+  .h3-cartaz,
+  .h3-top {
+    padding-top: 30px;
+    padding-left: 0%;
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card {
+  border-radius: 5px;
+  padding: 100px 30px;
+  margin: 20px;
+  width: 300px;
+  height: 300px;
+  transition: all 0.3s ease-out;
+  text-align: center;
+  justify-content: center;
+  background-color: antiquewhite;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+  }
+  
+  .card h2 {
+    color: #111;
+    font-size: 15px;
+    padding: 10px;
+  }
+  
+  .card h4 {
+    color: #4a4b4e;
+    font-size: 10px;
+    padding-top: 10px;
+  }
+  
+  .top-rated {
+    padding-top: 70px;
+  }
+  
+  .pesquisa {
+    text-align: center;
+    font: bold 20pt "Ubuntu";
+    border: 1px solid gray;
+    padding: 20px;
+    margin: 10px 50px;
+    list-style-type: none;
+    border-radius: 2px 2px 10px 10px;
+  }
+
+  /* modal styling mobile */
+
+  .modal {
+    background: rgba(192, 192, 192, 0.35);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(13.5px);
+    -webkit-backdrop-filter: blur(13.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: white;
+  }
+  
+  .details {
+    display: flex;
+    flex-direction: column;
+    padding: 60px 50px;
+  }
+  
+  .img-details {
+    width: 300px;
+    height: 450px;
+    border: 3px solid black;
+    text-align: center;
+    padding-top: 50%;
+    font: bold 25pt "Poppins";
+  }
+  
+  .movie-data {
+    list-style-type: none;
+    justify-content: start;
+  }
+  
+  .list-name {
+    font: bold 25pt "Ubuntu";
+  }
+  
+  .list-sinopse {
+    padding: 10px 0;
+    font: bold 15pt "Ubuntu";
+    width: 100%;
+  }
+  .description {
+    font: normal 15pt "Ubuntu";
+  }
+  
+  .list-data {
+    font: bold 15pt "Ubuntu";
+  }
+  
+  .list-elenco {
+    padding: 20px 0;
+    font: bold 15pt "Ubuntu";
+  }
+  
 }
