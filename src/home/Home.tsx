@@ -12,6 +12,7 @@ function Home() {
     poster_path: "",
     release_date: "",
     title: "",
+    vote_count: 0,
   };
   const [listaFilmesCartaz, setlistaFilmesCartaz] = useState<Filme[]>([]);
   const [listaFilmesTopRated, setlistaFilmesTopRated] = useState<Filme[]>([]);
@@ -19,6 +20,12 @@ function Home() {
   const [resultadoPesquisa, setResultadoPesquisa] = useState<Filme[]>([]);
   const [passaFilme, setPassaFilme] = useState<Filme>(filmeInicio);
   const [open, setOpen] = useState<boolean>(false);
+  // filtro de datas
+  const [dataPesquisada, setDataPesquisada] = useState<string>("");
+  const [resultadoData, setResultadoData] = useState<Filme[]>([]);
+  //ordenar por votos
+  const [votos, setVotos] = useState<string>("");
+  const [resultadoVotos, setResultadoVotos] = useState<Filme[]>([]);
 
   function getFilmesCartaz() {
     axios
@@ -64,6 +71,24 @@ function Home() {
 
   const pegaTexto = (event: any) => {
     setFilmePesquisado(event.target.value);
+  };
+
+  function dateSearch() {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/search/movie/top_rated?api_key=8238e0429d265d4d18abf1b53a68e7cb&language=pt-BR&query=${dataPesquisada}&page=1&include_adult=false`
+      )
+      .then((response: AxiosResponse<any>) => {
+        setResultadoData(response.data.results);
+        console.log(response.data.results);
+      })
+      .catch((error: AxiosError) => {
+        console.error(error);
+      });
+  }
+
+  const getData = (event: any) => {
+    setDataPesquisada(event.target.value);
   };
 
   useEffect(() => {
@@ -146,17 +171,54 @@ function Home() {
 
           <section className="top-rated">
             <h3 className="h3-top">Melhores Classificados</h3>
+            <div className="h3-top">
+              <input
+                type="number"
+                id="searchData"
+                value={dataPesquisada}
+                onChange={getData}
+                placeholder="Pesquisar por ano..."
+              />
+              <button onClick={() => dateSearch()}>Pesquisar</button>
+            </div>
+
             <div className="row">
-              {listaFilmesTopRated.slice(0, 6).map((filme) => {
-                return (
-                  <div className="card">
-                    <a href="#" onClick={() => handleOpen(filme)}>
-                      <img src="" width="300px" />
-                      <h2 id="movie">{filme.title}</h2>
-                      <h4 id="lancamento">{filme.release_date}</h4>
-                    </a>
-                  </div>
+              {listaFilmesTopRated.slice(0, 5).map((filme) => {
+                console.log("data pesquisada: ", dataPesquisada);
+                console.log(
+                  "filme.release_date: ",
+                  filme.release_date.substring(0, 4)
                 );
+                if (dataPesquisada == filme.release_date.substring(0, 4)) {
+                  return (
+                    <div className="card">
+                      <a href="#" onClick={() => handleOpen(filme)}>
+                        <img src="" width="300px" />
+                        <h2 id="movie">{filme.title}</h2>
+                        <h4 id="lancamento">{filme.release_date}</h4>
+                      </a>
+                    </div>
+                  );
+                }
+              })}
+
+              {listaFilmesTopRated.slice(0, 5).map((filme_geral) => {
+                console.log("data pesquisada: ", dataPesquisada);
+                console.log(
+                  "filme.release_date: ",
+                  filme_geral.release_date.substring(0, 4)
+                );
+                if (dataPesquisada == "") {
+                  return (
+                    <div className="card">
+                      <a href="#" onClick={() => handleOpen(filme_geral)}>
+                        <img src="" width="300px" />
+                        <h2 id="movie">{filme_geral.title}</h2>
+                        <h4 id="lancamento">{filme_geral.release_date}</h4>
+                      </a>
+                    </div>
+                  );
+                }
               })}
             </div>
           </section>
