@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Details from "../details/Details";
 import { Filme } from "../types/types";
 import "./style.css";
+import { Button, Card } from "react-bootstrap";
 
 function Home() {
   const filmeInicio: Filme = {
@@ -70,17 +71,18 @@ function Home() {
     setFilmePesquisado(event.target.value);
   };
 
-  // function orderByVote() {
-  //   axios.get(
-  //     "https://api.themoviedb.org/3/movie/top_rated?api_key=8238e0429d265d4d18abf1b53a68e7cb&language=pt-BR&page=1&"
-  //   )
-  //   .then((response: AxiosResponse<any>) => {
-  //     setResultadoVotos(response.data.results);
-  //   })
-  //   .catch((error: AxiosError) => {
-  //     console.error(error);
-  //   });
-  // }
+  function orderByVote() {
+    axios
+      .get(
+        "https://api.themoviedb.org/3/movie/top_rated?api_key=8238e0429d265d4d18abf1b53a68e7cb&language=pt-BR&page=1&"
+      )
+      .then((response: AxiosResponse<any>) => {
+        setResultadoVotos(response.data.results);
+      })
+      .catch((error: AxiosError) => {
+        console.error(error);
+      });
+  }
 
   function dateSearch() {
     axios
@@ -163,14 +165,29 @@ function Home() {
             <h3 className="h3-cartaz">Em Cartaz Agora</h3>
             <div className="row">
               {listaFilmesCartaz.slice(0, 3).map((filme) => {
+                console.log("filme.poster_path", filme.poster_path)
                 return (
-                  <div className="card">
-                    <a href="#" onClick={() => handleOpen(filme)}>
-                      <img src="" width="300px" />
-                      <h2 id="movie">{filme.title}</h2>
-                      <h4 id="lancamento"> date: {filme.release_date}</h4>
-                      <h4 id="id"> id: {filme.id}</h4>
-                    </a>
+                  // <div className="card">
+                  //   <a href="#" onClick={() => handleOpen(filme)}>
+                  //     <img src="" width="300px" />
+                  //     <h2 id="movie">{filme.title}</h2>
+                  //     <h4 id="lancamento"> date: {filme.release_date}</h4>
+                  //     <h4 id="id"> id: {filme.id}</h4>
+                  //   </a>
+                  // </div>
+
+                  // https://image.tmdb.org/t/p/w500/wwemzKWzjKYJFfCeiB57q3r4Bcm.png
+                  <div>
+                    <Card style={{ width: "18rem" }}>
+                      <a href="" onClick={() => handleOpen(filme)}>
+                        <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w300/${filme.poster_path}`} />
+                        <Card.Body>
+                          <Card.Title>{filme.title}</Card.Title>
+                          <Card.Text>{filme.release_date}</Card.Text>
+                          <Button variant="primary">Veja!</Button>
+                        </Card.Body>
+                      </a>
+                    </Card>
                   </div>
                 );
               })}
@@ -189,7 +206,13 @@ function Home() {
               />
               <button onClick={() => dateSearch()}>Pesquisar</button>
 
-              <button>Ordenar p/ mais votos</button>
+              <button
+                onClick={() => {
+                  listaFilmesTopRated.sort();
+                }}
+              >
+                Ordenar p/ mais votos
+              </button>
             </div>
 
             <div className="row">
