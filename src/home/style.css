@@ -63,10 +63,45 @@ header .search-space button:hover {
   padding-top: 30px;
 }
 
-.h3-cartaz,
-.h3-top {
+.h3-cartaz {
   padding: 10px;
   padding-left: 100px;
+}
+
+.h3-top {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 100px;
+  align-items: center;
+}
+
+.filtros {
+  display: flex;
+}
+
+.input-search-year {
+  font: bold 15pt "Ubuntu";
+  margin-right: 20px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.button-sort-vote {
+  font: bold 15pt "Ubuntu";
+  margin-right: 20px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+  background: none;
+}
+
+.button-sort-vote:hover {
+  background: rgb(36, 36, 112);;
+  border: 1px solid black;
+  color: white;
+  border-radius: 5px;
 }
 
 .row {

@@ -34,7 +34,6 @@ function Home() {
       )
       .then((response: AxiosResponse<any>) => {
         setlistaFilmesCartaz(response.data.results);
-        console.log(response.data.results);
       })
       .catch((error: AxiosError) => {
         console.error(error);
@@ -48,7 +47,6 @@ function Home() {
       )
       .then((response: AxiosResponse<any>) => {
         setlistaFilmesTopRated(response.data.results);
-        console.log(response.data.results);
       })
       .catch((error: AxiosError) => {
         console.error(error);
@@ -58,11 +56,10 @@ function Home() {
   function pesquisa() {
     axios
       .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=8238e0429d265d4d18abf1b53a68e7cb&language=pt-BR&query=${filmePesquisado}&page=1&include_adult=false&year=2022`
+        `https://api.themoviedb.org/3/search/movie?api_key=8238e0429d265d4d18abf1b53a68e7cb&language=pt-BR&query=${filmePesquisado}&page=1&include_adult=false`
       )
       .then((response: AxiosResponse<any>) => {
         setResultadoPesquisa(response.data.results);
-        console.log(response.data.results);
       })
       .catch((error: AxiosError) => {
         console.error(error);
@@ -73,14 +70,25 @@ function Home() {
     setFilmePesquisado(event.target.value);
   };
 
+  // function orderByVote() {
+  //   axios.get(
+  //     "https://api.themoviedb.org/3/movie/top_rated?api_key=8238e0429d265d4d18abf1b53a68e7cb&language=pt-BR&page=1&"
+  //   )
+  //   .then((response: AxiosResponse<any>) => {
+  //     setResultadoVotos(response.data.results);
+  //   })
+  //   .catch((error: AxiosError) => {
+  //     console.error(error);
+  //   });
+  // }
+
   function dateSearch() {
     axios
       .get(
-        `https://api.themoviedb.org/3/search/movie/top_rated?api_key=8238e0429d265d4d18abf1b53a68e7cb&language=pt-BR&query=${dataPesquisada}&page=1&include_adult=false`
+        `https://api.themoviedb.org/3/search/movie?api_key=8238e0429d265d4d18abf1b53a68e7cb&language=pt-BR&query=%22%22&page=1&include_adult=false&year=${dataPesquisada}`
       )
       .then((response: AxiosResponse<any>) => {
         setResultadoData(response.data.results);
-        console.log(response.data.results);
       })
       .catch((error: AxiosError) => {
         console.error(error);
@@ -94,6 +102,7 @@ function Home() {
   useEffect(() => {
     getFilmesCartaz();
     getTopRated();
+    dateSearch();
   }, []);
 
   // Abre e fecha modal:
@@ -164,7 +173,6 @@ function Home() {
                     </a>
                   </div>
                 );
-                console.log("aqui", passaFilme);
               })}
             </div>
           </section>
@@ -180,15 +188,12 @@ function Home() {
                 placeholder="Pesquisar por ano..."
               />
               <button onClick={() => dateSearch()}>Pesquisar</button>
+
+              <button>Ordenar p/ mais votos</button>
             </div>
 
             <div className="row">
-              {listaFilmesTopRated.slice(0, 5).map((filme) => {
-                console.log("data pesquisada: ", dataPesquisada);
-                console.log(
-                  "filme.release_date: ",
-                  filme.release_date.substring(0, 4)
-                );
+              {listaFilmesTopRated.map((filme) => {
                 if (dataPesquisada == filme.release_date.substring(0, 4)) {
                   return (
                     <div className="card">
@@ -196,18 +201,14 @@ function Home() {
                         <img src="" width="300px" />
                         <h2 id="movie">{filme.title}</h2>
                         <h4 id="lancamento">{filme.release_date}</h4>
+                        <h4 id="lancamento">{filme.vote_count}</h4>
                       </a>
                     </div>
                   );
                 }
               })}
 
-              {listaFilmesTopRated.slice(0, 5).map((filme_geral) => {
-                console.log("data pesquisada: ", dataPesquisada);
-                console.log(
-                  "filme.release_date: ",
-                  filme_geral.release_date.substring(0, 4)
-                );
+              {listaFilmesTopRated.map((filme_geral) => {
                 if (dataPesquisada == "") {
                   return (
                     <div className="card">
@@ -215,11 +216,29 @@ function Home() {
                         <img src="" width="300px" />
                         <h2 id="movie">{filme_geral.title}</h2>
                         <h4 id="lancamento">{filme_geral.release_date}</h4>
+                        <h4 id="lancamento">
+                          {" "}
+                          votos: {filme_geral.vote_count}
+                        </h4>
                       </a>
                     </div>
                   );
                 }
               })}
+
+              {/* {listaFilmesTopRated.map((filme_votado) => {
+                return (
+
+                  <div className="card">
+                    <a href="#" onClick={() => handleOpen(filme_votado)}>
+                      <img src="" width="300px" />
+                      <h2 id="movie">{filme_votado.title}</h2>
+                      <h4 id="lancamento">{filme_votado.release_date}</h4>
+                      <h4 id="lancamento"> votos: {filme_votado.vote_count}</h4>
+                    </a>
+                  </div>
+                );
+              })} */}
             </div>
           </section>
 
