@@ -15,20 +15,23 @@ function Home() {
     title: "",
     vote_count: 0,
   };
+  // Arrays de Filme
   const [listaFilmesCartaz, setlistaFilmesCartaz] = useState<Filme[]>([]);
   const [listaFilmesTopRated, setlistaFilmesTopRated] = useState<Filme[]>([]);
-  const [filmePesquisado, setFilmePesquisado] = useState<string>("");
-  const [resultadoPesquisa, setResultadoPesquisa] = useState<Filme[]>([]);
-  const [passaFilme, setPassaFilme] = useState<Filme>(filmeInicio);
-  const [open, setOpen] = useState<boolean>(false);
-  // filtro de datas
-  const [dataPesquisada, setDataPesquisada] = useState<string>("");
-  const [resultadoData, setResultadoData] = useState<Filme[]>([]);
-  //ordenar por votos
-  const [votos, setVotos] = useState<string>("");
-  const [resultadoVotos, setResultadoVotos] = useState<Filme[]>([]);
+  const [pesquisa, setPesquisa] = useState<Filme[]>([]);
 
-  function getFilmesCartaz() {
+  // States Filme
+  const [dataResponse, setDataResponse] = useState<Filme>(filmeInicio);
+
+  // States String
+  const [filmePesquisado, setFilmePesquisado] = useState<string>("");
+  const [dataPesquisada, setDataPesquisada] = useState<string>("");
+
+  // States Boolean
+  const [open, setOpen] = useState<boolean>(false);
+  const [confirmClick, setConfirmClick] = useState<boolean>(true);
+
+  function getMoviePost() {
     axios
       .get(
         "https://api.themoviedb.org/3/movie/upcoming?api_key=8238e0429d265d4d18abf1b53a68e7cb&language=pt-BR&page=1"
@@ -41,7 +44,7 @@ function Home() {
       });
   }
 
-  function getTopRated() {
+  function getTopRatedMovies() {
     axios
       .get(
         "https://api.themoviedb.org/3/movie/top_rated?api_key=8238e0429d265d4d18abf1b53a68e7cb&language=pt-BR&page=1&"
@@ -54,30 +57,13 @@ function Home() {
       });
   }
 
-  function pesquisa() {
+  function getMovieSearch() {
     axios
       .get(
         `https://api.themoviedb.org/3/search/movie?api_key=8238e0429d265d4d18abf1b53a68e7cb&language=pt-BR&query=${filmePesquisado}&page=1&include_adult=false`
       )
       .then((response: AxiosResponse<any>) => {
-        setResultadoPesquisa(response.data.results);
-      })
-      .catch((error: AxiosError) => {
-        console.error(error);
-      });
-  }
-
-  const pegaTexto = (event: any) => {
-    setFilmePesquisado(event.target.value);
-  };
-
-  function orderByVote() {
-    axios
-      .get(
-        "https://api.themoviedb.org/3/movie/top_rated?api_key=8238e0429d265d4d18abf1b53a68e7cb&language=pt-BR&page=1&"
-      )
-      .then((response: AxiosResponse<any>) => {
-        setResultadoVotos(response.data.results);
+        setPesquisa(response.data.results);
       })
       .catch((error: AxiosError) => {
         console.error(error);
@@ -90,29 +76,35 @@ function Home() {
         `https://api.themoviedb.org/3/search/movie?api_key=8238e0429d265d4d18abf1b53a68e7cb&language=pt-BR&query=%22%22&page=1&include_adult=false&year=${dataPesquisada}`
       )
       .then((response: AxiosResponse<any>) => {
-        setResultadoData(response.data.results);
+        setlistaFilmesTopRated(response.data.results);
       })
       .catch((error: AxiosError) => {
         console.error(error);
       });
   }
 
-  const getData = (event: any) => {
+  // Abre e fecha modal detals
+
+  function handleOpen(filme: Filme) {
+    setOpen(true);
+    setDataResponse(filme);
+  }
+
+  const handleClose = () => setOpen(false);
+
+  const getText = (event: any) => {
+    setFilmePesquisado(event.target.value);
+  };
+
+  const getDate = (event: any) => {
     setDataPesquisada(event.target.value);
   };
 
   useEffect(() => {
-    getFilmesCartaz();
-    getTopRated();
+    getMoviePost();
+    getTopRatedMovies();
     dateSearch();
   }, []);
-
-  // Abre e fecha modal:
-  function handleOpen(filme: Filme) {
-    setOpen(true);
-    setPassaFilme(filme);
-  }
-  const handleClose = () => setOpen(false);
 
   return (
     <div>
@@ -127,10 +119,10 @@ function Home() {
               type="text"
               id="search"
               value={filmePesquisado}
-              onChange={pegaTexto}
+              onChange={getText}
               placeholder="Pesquisar..."
             />
-            <button onClick={() => pesquisa()}>Pesquisar</button>
+            <button onClick={() => getMovieSearch()}>Pesquisar</button>
           </div>
         </div>
 
@@ -145,7 +137,7 @@ function Home() {
 
       <main>
         <ul className="pesquisa">
-          {resultadoPesquisa.slice(0, 3).map((filme) => {
+          {pesquisa.map((filme) => {
             return (
               <li className="li-resull-pesquisa">
                 <a href="#" onClick={() => handleOpen(filme)}>
@@ -165,12 +157,15 @@ function Home() {
             <h3 className="h3-cartaz">Em Cartaz Agora</h3>
             <div className="row">
               {listaFilmesCartaz.map((filme) => {
-                console.log("filme.poster_path", filme.poster_path)
+                // console.log("filme.poster_path", filme.poster_path);
                 return (
-                  <div className="card-movie">
+                  <div className="card-movie" key={filme.id}>
                     <Card style={{ width: "18rem" }}>
-                      <a href="" onClick={() => handleOpen(filme)}>
-                        <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w300/${filme.poster_path}`} />
+                      <a href="#" onClick={() => handleOpen(filme)}>
+                        <Card.Img
+                          variant="top"
+                          src={`https://image.tmdb.org/t/p/w300/${filme.poster_path}`}
+                        />
                         <Card.Body>
                           <Card.Title>{filme.title}</Card.Title>
                           <Card.Text>{filme.release_date}</Card.Text>
@@ -185,58 +180,15 @@ function Home() {
 
           <section className="top-rated">
             <h3 className="h3-top">Melhores Classificados</h3>
-            <div className="h3-top">
+            <div>
               <input
                 type="number"
+                placeholder="Pesquisar por ano..."
                 id="searchData"
                 value={dataPesquisada}
-                onChange={getData}
-                placeholder="Pesquisar por ano..."
-              />
+                onChange={getDate}/>
+
               <button onClick={() => dateSearch()}>Pesquisar</button>
-
-              <button
-                onClick={() => {
-                  listaFilmesTopRated.sort();
-                }}
-              >
-                Ordenar p/ mais votos
-              </button>
-            </div>
-
-            <div className="row">
-              {listaFilmesTopRated.map((filme) => {
-                if (dataPesquisada == filme.release_date.substring(0, 4)) {
-                  return (
-                    <div className="card-movie">
-                      <a href="#" onClick={() => handleOpen(filme)}>
-                        <img src={`https://image.tmdb.org/t/p/w300/${filme.poster_path}`} />
-                        <h2 id="movie">{filme.title}</h2>
-                        <h4 id="lancamento">{filme.release_date}</h4>
-                        <h4 id="lancamento">{filme.vote_count}</h4>
-                      </a>
-                    </div>
-                  );
-                }
-              })}
-
-              {listaFilmesTopRated.map((filme) => {
-                if (dataPesquisada == "") {
-                  return (
-                    <div className="card">
-                      <a href="#" onClick={() => handleOpen(filme)}>
-                        <img src={`https://image.tmdb.org/t/p/w300/${filme.poster_path}`} />
-                        <h2 id="movie">{filme.title}</h2>
-                        <h4 id="lancamento">{filme.release_date}</h4>
-                        <h4 id="lancamento">
-                          {" "}
-                          votos: {filme.vote_count}
-                        </h4>
-                      </a>
-                    </div>
-                  );
-                }
-              })}
             </div>
           </section>
 
@@ -247,9 +199,9 @@ function Home() {
       </main>
       <Details
         open={open}
-        handleClose={handleClose}
-        passaFilme={passaFilme}
+        dataResponse={dataResponse}
         handleOpen={handleOpen}
+        handleClose={handleClose}
       />
     </div>
   );

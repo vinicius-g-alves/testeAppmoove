@@ -6,19 +6,19 @@ function Details(props: any) {
       <div>
         <main>
           <div className="details">
-            <img src={`https://image.tmdb.org/t/p/w500/${props.passaFilme.poster_path}`}/>
+            <img src={`https://image.tmdb.org/t/p/w500/${props.dataResponse.poster_path}`}/>
             <ul className="movie-data">
               <div className="movie-description">
-                <li className="list-name">{props.passaFilme.title}</li>
+                <li className="list-name">{props.dataResponse.title}</li>
                 <li className="list-sinopse">
                   Sinopse:{" "}
                   <span className="description">
-                    {props.passaFilme.overview}
+                    {props.dataResponse.overview}
                   </span>
                 </li>
                 <li className="list-data">
                   Data de Lançamento:{" "}
-                  <span>{props.passaFilme.release_date}</span>
+                  <span>{props.dataResponse.release_date}</span>
                 </li>
               </div>
               {/* <li className="list-elenco">Elenco:</li>  *NÃO FOI COLOCADO POIS NÃO EXISTE NA API */}
