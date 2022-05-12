@@ -6,17 +6,8 @@ function Details(props: any) {
       <div>
         <main>
           <div className="details">
-            <div className="img-details">NO IMAGE</div>
-
+            <img src={`https://image.tmdb.org/t/p/w500/${props.passaFilme.poster_path}`}/>
             <ul className="movie-data">
-              {/* <li className="list-name">Nome</li>
-              <li className="list-sinopse">
-                Sinopse: <span className="description">...</span>
-              </li>
-              <li className="list-data">
-                Data de Lançamento: <span>...</span>
-              </li> */}
-
               <div className="movie-description">
                 <li className="list-name">{props.passaFilme.title}</li>
                 <li className="list-sinopse">

@@ -164,27 +164,16 @@ function Home() {
           <section className="cartaz">
             <h3 className="h3-cartaz">Em Cartaz Agora</h3>
             <div className="row">
-              {listaFilmesCartaz.slice(0, 3).map((filme) => {
+              {listaFilmesCartaz.map((filme) => {
                 console.log("filme.poster_path", filme.poster_path)
                 return (
-                  // <div className="card">
-                  //   <a href="#" onClick={() => handleOpen(filme)}>
-                  //     <img src="" width="300px" />
-                  //     <h2 id="movie">{filme.title}</h2>
-                  //     <h4 id="lancamento"> date: {filme.release_date}</h4>
-                  //     <h4 id="id"> id: {filme.id}</h4>
-                  //   </a>
-                  // </div>
-
-                  // https://image.tmdb.org/t/p/w500/wwemzKWzjKYJFfCeiB57q3r4Bcm.png
-                  <div>
+                  <div className="card-movie">
                     <Card style={{ width: "18rem" }}>
                       <a href="" onClick={() => handleOpen(filme)}>
                         <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w300/${filme.poster_path}`} />
                         <Card.Body>
                           <Card.Title>{filme.title}</Card.Title>
                           <Card.Text>{filme.release_date}</Card.Text>
-                          <Button variant="primary">Veja!</Button>
                         </Card.Body>
                       </a>
                     </Card>
@@ -219,9 +208,9 @@ function Home() {
               {listaFilmesTopRated.map((filme) => {
                 if (dataPesquisada == filme.release_date.substring(0, 4)) {
                   return (
-                    <div className="card">
+                    <div className="card-movie">
                       <a href="#" onClick={() => handleOpen(filme)}>
-                        <img src="" width="300px" />
+                        <img src={`https://image.tmdb.org/t/p/w300/${filme.poster_path}`} />
                         <h2 id="movie">{filme.title}</h2>
                         <h4 id="lancamento">{filme.release_date}</h4>
                         <h4 id="lancamento">{filme.vote_count}</h4>
@@ -231,37 +220,23 @@ function Home() {
                 }
               })}
 
-              {listaFilmesTopRated.map((filme_geral) => {
+              {listaFilmesTopRated.map((filme) => {
                 if (dataPesquisada == "") {
                   return (
                     <div className="card">
-                      <a href="#" onClick={() => handleOpen(filme_geral)}>
-                        <img src="" width="300px" />
-                        <h2 id="movie">{filme_geral.title}</h2>
-                        <h4 id="lancamento">{filme_geral.release_date}</h4>
+                      <a href="#" onClick={() => handleOpen(filme)}>
+                        <img src={`https://image.tmdb.org/t/p/w300/${filme.poster_path}`} />
+                        <h2 id="movie">{filme.title}</h2>
+                        <h4 id="lancamento">{filme.release_date}</h4>
                         <h4 id="lancamento">
                           {" "}
-                          votos: {filme_geral.vote_count}
+                          votos: {filme.vote_count}
                         </h4>
                       </a>
                     </div>
                   );
                 }
               })}
-
-              {/* {listaFilmesTopRated.map((filme_votado) => {
-                return (
-
-                  <div className="card">
-                    <a href="#" onClick={() => handleOpen(filme_votado)}>
-                      <img src="" width="300px" />
-                      <h2 id="movie">{filme_votado.title}</h2>
-                      <h4 id="lancamento">{filme_votado.release_date}</h4>
-                      <h4 id="lancamento"> votos: {filme_votado.vote_count}</h4>
-                    </a>
-                  </div>
-                );
-              })} */}
             </div>
           </section>
 

@@ -105,46 +105,20 @@ header .search-space button:hover {
 }
 
 .row {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
   /* justify-content: center; */
   padding-left: 40px;
   align-items: center;
 }
-
-.card {
-  border-radius: 5px;
-  padding: 100px 30px;
-  margin: 20px;
-  width: 300px;
-  height: 300px;
-  transition: all 0.3s ease-out;
-  text-align: center;
-  justify-content: center;
-  background-color: rgb(36, 36, 112);
-  color: white;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  cursor: pointer;
-  background: rgb(226, 96, 96);
-  border: 5px solid;
-  color: #111;
-}
-
-.card h2 {
-  color: white;
-  font-size: 25px;
-  padding: 10px;
-}
-
-.card h4 {
-  color: antiquewhite;
-  font-size: 16px;
-}
-
 .top-rated {
   padding-top: 70px;
+}
+
+.card-movie{
+  padding: 30px;
+  text-align: center;
+  font: bold 15pt "Ubuntu";
 }
 
 .pesquisa {
