@@ -15,6 +15,7 @@ function Home() {
     title: "",
     vote_count: 0,
   };
+  // aaaaa
   // Arrays de Filme
   const [listaFilmesCartaz, setlistaFilmesCartaz] = useState<Filme[]>([]);
   // const [listaFilmesTopRated, setlistaFilmesTopRated] = useState<Filme[]>([]);
