@@ -6,7 +6,7 @@ function Details(props: any) {
       <div>
         <main>
           <div className="details">
-            <img src={`https://image.tmdb.org/t/p/w500/${props.dataResponse.poster_path}`}/>
+            <img className="img-details" src={`https://image.tmdb.org/t/p/w500/${props.dataResponse.poster_path}`}/>
             <ul className="movie-data">
               <div className="movie-description">
                 <li className="list-name">{props.dataResponse.title}</li>

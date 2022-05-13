@@ -65,13 +65,14 @@ header .search-space button:hover {
 .h3-cartaz {
   padding: 10px;
   padding-left: 100px;
+  font-size: 40px;
 }
 
 .h3-top {
   display: flex;
-  justify-content: space-between;
   padding: 10px 100px;
   align-items: center;
+  font-size: 40px;
 }
 
 .filtros {
@@ -79,6 +80,7 @@ header .search-space button:hover {
 }
 
 .input-search-year {
+  padding: 10px;
   font: bold 15pt "Ubuntu";
   margin-right: 20px;
   border: 1px solid gray;
@@ -112,6 +114,13 @@ header .search-space button:hover {
 }
 .top-rated {
   padding-top: 70px;
+}
+
+.input-data-search {
+  padding: 10px;
+  font: bold 12pt "Ubuntu";
+  border-radius: 10px;
+  border: 1px solid gray;
 }
 
 .card-movie {
@@ -179,14 +188,6 @@ header .search-space button:hover {
   padding: 60px 50px;
 }
 
-.img-details {
-  width: 700px;
-  height: 800px;
-  border: 3px solid black;
-  text-align: center;
-  padding-top: 100px;
-  font: bold 25pt "Poppins";
-}
 
 .movie-data {
   list-style-type: none;
@@ -235,6 +236,7 @@ header .search-space button:hover {
 @media (max-width: 600px) {
   * {
     text-decoration: none;
+    text-align: center;
   }
 
   header {
@@ -284,7 +286,12 @@ header .search-space button:hover {
   }
 
   .h3-top {
-    background-color: red;
+    text-align: center;
+  }
+
+  .input-search-year {
+    text-align: center;
+    width: 100%;
   }
 
   .row {
@@ -292,36 +299,6 @@ header .search-space button:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-
-  .card {
-    border-radius: 5px;
-    padding: 100px 30px;
-    margin: 20px;
-    width: 300px;
-    height: 300px;
-    transition: all 0.3s ease-out;
-    text-align: center;
-    justify-content: center;
-    background-color: rgb(36, 36, 112);
-    color: white;
-  }
-
-  .card:hover {
-    transform: translateY(-5px);
-    cursor: pointer;
-  }
-
-  .card h2 {
-    color: white;
-    font-size: 15px;
-    padding: 10px;
-  }
-
-  .card h4 {
-    color: antiquewhite;
-    font-size: 10px;
-    padding-top: 10px;
   }
 
   .top-rated {
@@ -346,7 +323,6 @@ header .search-space button:hover {
     backdrop-filter: blur(13.5px);
     -webkit-backdrop-filter: blur(13.5px);
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
     color: white;
     box-sizing: border-box;
   }
@@ -354,18 +330,13 @@ header .search-space button:hover {
   .details {
     display: flex;
     flex-direction: column;
-    text-align: left;
+    text-align: center;
     align-items: center;
-    padding: 40px;
+    padding: 10px;
   }
 
   .img-details {
-    width: 150px;
-    height: 250px;
-    border: 3px solid black;
-    text-align: center;
-    padding-top: 10%;
-    font: bold 25pt "Poppins";
+    width: 320px;
   }
 
   .close-modal {
